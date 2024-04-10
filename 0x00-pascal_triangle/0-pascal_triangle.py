@@ -4,9 +4,11 @@
 Module to implement a pascal triangle
 """
 
+
 def pascal_triangle(n):
     """
-    Function to return a list of lists of integers representing the Pascal’s triangle of n
+    Function to return a list of lists of integers representing the
+    Pascal’s triangle of n
 
     Args:
         n (int): The number of rows to generate for Pascal's Triangle
