@@ -19,8 +19,8 @@ def minOperations(n):
 
     while n > 1:
         while n % factor == 0:
-          operations += factor  # Increment operations by factor
-          n //= factor  # Divide n by factor
+            operations += factor  # Increment operations by factor
+            n //= factor  # Divide n by factor
 
         factor += 1  # Increment factor
 
