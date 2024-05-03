@@ -60,14 +60,14 @@ def main():
                 print_statistics(total_file_size, status_codes)
                 line_count = 0
 
-    # except KeyboardInterrupt:
-    #     # Handle keyboard interruption
-    #     print_statistics(total_file_size, status_codes)
-    #     sys.exit(0)
-
-    finally:
-        # Ensure statistics are printed at the end of input
+    except KeyboardInterrupt:
+        # Handle keyboard interruption
         print_statistics(total_file_size, status_codes)
+        sys.exit(0)
+
+    # finally:
+    #     # Ensure statistics are printed at the end of input
+    #     print_statistics(total_file_size, status_codes)
 
 
 if __name__ == "__main__":
