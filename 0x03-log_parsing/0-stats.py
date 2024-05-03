@@ -15,7 +15,7 @@ import sys
 
 def print_statistics(total_file_size, status_codes):
     """
-    Print statistics including total file size and status code counts.
+    Print metrics including total file size and status code counts.
     """
     print("File size: {}".format(total_file_size))
     for code, count in sorted(status_codes.items()):
@@ -36,39 +36,32 @@ def parse_line(line):
     return None, None
 
 
-def main():
-    """ Read stdin line by line and compute metrics.
-    """
-    # initialize variables to store metrics
-    total_file_size = 0
-    status_codes = {"200": 0, "301": 0, "400": 0,
-                    "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-    line_count = 0
+# initialize variables to store metrics
+total_file_size = 0
+status_codes = {"200": 0, "301": 0, "400": 0,
+                "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+line_count = 0
 
-    try:
-        # loop over each line in stdin
-        for line in sys.stdin:
-            # increment line count to track when to print statistics
-            line_count += 1
-            file_size, code = parse_line(line)
+try:
+    # loop over each line in stdin
+    for line in sys.stdin:
+        # increment line count to track when to print statistics
+        line_count += 1
+        file_size, code = parse_line(line)
 
-            if file_size is not None and code in status_codes:
-                total_file_size += file_size
-                status_codes[code] += 1
+        if file_size is not None and code in status_codes:
+            total_file_size += file_size
+            status_codes[code] += 1
 
-            if line_count % 10 == 0:
-                print_statistics(total_file_size, status_codes)
-                line_count = 0
+        if line_count % 10 == 0:
+            print_statistics(total_file_size, status_codes)
+            line_count = 0
 
-    except KeyboardInterrupt:
-        # Handle keyboard interruption
-        print_statistics(total_file_size, status_codes)
-        sys.exit(0)
+except KeyboardInterrupt:
+    # Handle keyboard interruption
+    print_statistics(total_file_size, status_codes)
+    sys.exit(0)
 
-    # finally:
-    #     # Ensure statistics are printed at the end of input
-    #     print_statistics(total_file_size, status_codes)
-
-
-if __name__ == "__main__":
-    main()
+finally:
+    # Ensure statistics are printed at the end of input
+    print_statistics(total_file_size, status_codes)
