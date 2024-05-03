@@ -28,11 +28,26 @@ def parse_line(line):
     Parse a line and extract file size and status code.
     Return file size and status code if the line matches the expected format,
     otherwise return None.
+    Refactored this function to basically ensure that the status code is
+    compared directly to the allowed list of strings without automatically
+    casting it to an integer, thereby handling cases where the status code
+    is not an integer or is not in the allowed list.
     """
     parts = line.split()  # split line into components
     # check if parts matches the expected format
-    if len(parts) >= 7 and parts[-2].isdigit() and parts[-1].isdigit():
-        return int(parts[-1]), parts[-2]
+    if len(parts) >= 7:
+        file_size_str = parts[-1]
+        code_str = parts[-2]
+        # check if the status code(code_str) is in the allowed list
+        # of strings (status_codes)
+        if code_str in status_codes:
+            try:
+                # convert file_size to integer or try to, lol
+                file_size = int(file_size_str)
+                return file_size, code_str
+            except ValueError:
+                # Handle case where file size is not an integer
+                return None, None
     return None, None
 
 
