@@ -17,10 +17,11 @@ def rotate_2d_matrix(matrix):
     n = len(matrix)
 
     # Transpose the matrix
-    for i in range(n):
+    for i in range(n):  # loop through the rows
+        # we iterate from i+1 to avoid swapping elements twice
         for j in range(i + 1, n):
+            # Swap elements to achieve transposition 
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-            # Swapping elements to achieve transposition
 
     # Reverse each row
     for i in range(n):
