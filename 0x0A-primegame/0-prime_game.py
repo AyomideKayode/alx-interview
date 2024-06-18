@@ -5,6 +5,7 @@ with the numbers in nums.
 By Maria and Ben taking turns picking prime numbers from a list.
 """
 
+
 def isWinner(x, nums):
     """
     Function that determines the winner of a game played x times
